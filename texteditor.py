@@ -5,7 +5,8 @@ def main():
     print("1 for creating file")
     print("2 for editing an existing file")
     print("3 for deleting a file")
-    print("4 for quiting")
+    print("4 for reading")
+    print("5 for quiting")
 
 def create():
     while 1==1:
@@ -163,16 +164,36 @@ def filenameslistesi():
 
 
 def reading():
-    filenameslistesi()
-    whatthe=input("Please type the number of the file: ")
-    
+    print("----------------")
+    while True:
+        if not filenamesvarmı():
+            print("/////There are no files!")
+            break
+        elif filenamesboşmu():
+            print("/////There are no files!")
+            break
+        else:
+            
+            filenameslistesi()
+            whatisthenameofthefile=input("Please type the number of the file: ")
+            try:
+                with open(whatisthenameofthefile,"r") as file:
+                    print(file.read())
+            except FileNotFoundError:
+                print(f"/////There is no file named {whatisthenameofthefile}!")
+            else:
+                break
 
 
 while True:
     main()
     x=input("Wha: ")
-    if x=="4":
+    if x=="5":
         break
+    
+    elif x=="4":
+        reading()
+        
     elif x=="3":
         delete()
         
